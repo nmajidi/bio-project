@@ -32,7 +32,7 @@ treeNJ2 <- NJ(dm2)
 layout(matrix(c(1,2), 2, 1), height=c(1,2))
 par(mar = c(0,0,2,0)+ 0.1)
 plot(treeUPGMA2, main="UPGMA")
-plot(treeNJ2, "unrooted", main="NJ")
+plot(treeNJ2, main="NJ")
 ```
 
 
@@ -142,4 +142,28 @@ plot(treeUPGMA9, main="UPGMA")
 plot(treeNJ9, main="NJ")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##part 4-1-1
+
+```{r}
+dm10 <- 1 - ((4/3) * (dm8/19000))
+t <- (-0.75) * log(dm10,base = exp(1))
+t /( 1.9 * 0.001)
+```
+## part 4-1-2
+
+## finding the time of living of the common ancestor!!
+
+```{r}
+dm11 <- 1 - ((4/3) * (dm9/19000))
+t1 <- (-0.75) * log(dm11,base = exp(1))
+t1 <- t1 /( 1.9 * 0.001)
+treeUPGMA11 <- upgma(t1)
+t1 <- as.matrix(t1)
+treeNJ11<- NJ(t1)
+plot(treeUPGMA11)
+edgelabels(round(treeUPGMA11$edge.length),  col="black", font=0.5)
+plot(treeNJ11)
+edgelabels(round(treeNJ11$edge.length),  col="black", font=0.5)
+
+```
+
