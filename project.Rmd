@@ -1,0 +1,145 @@
+---
+title: "phylProject"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+## Phylogenetic trees for 5 species of Ebola Virus according to their genes
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their GP gene
+dm1 <- read.csv("GP_Gene.csv") 
+treeUPGMA1 <- upgma(dm1)
+dm1 <- as.matrix(dm1)
+treeNJ1 <- NJ(dm1)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA1, main="UPGMA")
+plot(treeNJ1, main="NJ")
+```
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their L gene
+dm2 <- read.csv("L_Gene.csv")
+treeUPGMA2 <- upgma(dm2)
+dm2 <- as.matrix(dm2)
+treeNJ2 <- NJ(dm2)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA2, main="UPGMA")
+plot(treeNJ2, "unrooted", main="NJ")
+```
+
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their NP gene
+dm3 <- read.csv("NP_Gene.csv")
+treeUPGMA3 <- upgma(dm3)
+dm3 <- as.matrix(dm3)
+treeNJ3 <- NJ(dm3)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA3, main="UPGMA")
+plot(treeNJ3, main="NJ")
+```
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their VP24 gene
+dm4 <- read.csv("VP24_Gene.csv")
+treeUPGMA4 <- upgma(dm4)
+dm4 <- as.matrix(dm4)
+treeNJ4 <- NJ(dm4)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA4, main="UPGMA")
+plot(treeNJ4, main="NJ")
+```
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their VP30 gene
+dm5 <- read.csv("VP30_Gene.csv")
+treeUPGMA5 <- upgma(dm5)
+dm5 <- as.matrix(dm5)
+treeNJ5 <- NJ(dm5)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA5, main="UPGMA")
+plot(treeNJ5, main="NJ")
+```
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their VP35 gene
+dm6 <- read.csv("VP35_Gene.csv")
+treeUPGMA6 <- upgma(dm6)
+dm6 <- as.matrix(dm2)
+treeNJ6<- NJ(dm6)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA6, main="UPGMA")
+plot(treeNJ6, main="NJ")
+```
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their VP40 gene
+dm7 <- read.csv("VP40_Gene.csv")
+treeUPGMA7 <- upgma(dm7)
+dm7 <- as.matrix(dm7)
+treeNJ7 <- NJ(dm7)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA7, main="UPGMA")
+plot(treeNJ7, main="NJ")
+```
+
+## Final merged tree using "consensus"
+
+
+```{r}
+library(phangorn)
+tree1 <- consensus(treeUPGMA7,treeUPGMA6,treeUPGMA5,treeUPGMA4,treeUPGMA3,treeUPGMA2,treeUPGMA1, p = 0.4, check.labels = TRUE)
+plot(tree1)
+tree2 <- consensus(treeNJ7,treeNJ6,treeNJ5,treeNJ4,treeNJ3,treeNJ2,treeNJ1, p = 0.5, check.labels = TRUE)
+plot(tree2)
+```
+
+## part 3-3
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 5 species of Ebola Virus according to their genome edit distances
+dm8 <- read.csv("5Species.csv")
+treeUPGMA8 <- upgma(dm8)
+dm8 <- as.matrix(dm8)
+treeNJ8<- NJ(dm8)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA8, main="UPGMA")
+plot(treeNJ8, main="NJ")
+```
+
+## part 3-4
+
+```{r}
+library(phangorn)
+##Phylogenetic trees for 6 species of Ebola Virus according to their genome edit distances
+dm9 <- read.csv("6Species.csv")
+treeUPGMA9 <- upgma(dm9)
+dm9 <- as.matrix(dm9)
+treeNJ9<- NJ(dm9)
+layout(matrix(c(1,2), 2, 1), height=c(1,2))
+par(mar = c(0,0,2,0)+ 0.1)
+plot(treeUPGMA9, main="UPGMA")
+plot(treeNJ9, main="NJ")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
